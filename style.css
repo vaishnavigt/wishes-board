@@ -1,0 +1,24 @@
+/* Basic reset */
+* { box-sizing: border-box; }
+body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; color: #1f2d3d; background: #faf8f5; }
+
+.hero { position: relative; background: linear-gradient(135deg, #7c4dff, #ff8a65); color: #fff; min-height: 70vh; display: grid; place-items: center; text-align: center; }
+.hero .overlay { position: absolute; inset: 0; background-image: radial-gradient(rgba(255,255,255,.15) 1px, transparent 1px); background-size: 20px 20px; }
+.hero-content { position: relative; padding: 48px 20px; max-width: 900px; }
+.hero h1 { font-size: clamp(2rem, 5vw, 3.2rem); margin: 0 0 8px; letter-spacing: 0.5px; line-height: 1.2; }
+.hero .sub { margin: 0 0 16px; opacity: .9; }
+.hero .tag { font-size: clamp(1rem, 1.5vw, 1.125rem); margin-bottom: 24px; }
+.cta { display: inline-block; background: #fff; color: #7c4dff; padding: 14px 22px; border-radius: 10px; text-decoration: none; font-weight: 700; box-shadow: 0 8px 24px rgba(0,0,0,.2); transition: transform .15s ease, box-shadow .15s ease; }
+.cta:hover { transform: translateY{-2px}; box-shadow: 0 12px 30px rgba(0,0,0,.25); }
+
+.qr { margin-top: 28px; }
+.qr img { width: 180px; height: 180px; border-radius: 12px; background: #fff; padding: 10px; box-shadow: 0 8px 24px rgba(0,0,0,.25); }
+.qr-caption { margin-top: 8px; opacity: .9; }
+
+.content { max-width: 900px; padding: 32px 20px; margin: -40px auto 40px; background: #fff; border-radius: 16px; box-shadow: 0 12px 36px rgba(0,0,0,.12); }
+.content h2, .content h3 { color: #4a148c; }
+
+.share button { background: #7c4dff; color: #fff; border: none; padding: 10px 16px; border-radius: 8px; cursor: pointer; }
+.share span { margin-left: 10px; color: #2e7d32; }
+
+footer { text-align: center; padding: 24px; color: #6b7280; }

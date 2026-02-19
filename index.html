@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Wishes Board</title>
+  <meta name="description" content="Share your wishes, messages and blessings on this digital wishes board.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="hero">
+    <div class="overlay"></div>
+    <div class="hero-content">
+      <h1 id="eventName">Wishes Board</h1>
+      <p id="eventDate" class="sub"></p>
+      <p class="tag">We'd love to hear from you! Tap the button below to leave your wish ✨</p>
+      <a id="wishButton" class="cta" href="#" target="_blank" rel="noopener">Leave a Wish</a>
+      <div class="qr">
+        <img src="qr-placeholder.png" alt="Scan to open the wishes link"/>
+        <p class="qr-caption">Scan to open the wishes link</p>
+      </div>
+    </div>
+  </header>
+
+  <main class="content">
+    <section>
+      <h2>How it works</h2>
+      <ol>
+        <li>Scan the QR code or tap <strong>Leave a Wish</strong>.</li>
+        <li>Write your message and submit.</li>
+        <li>That's it! Your wishes will be shared with the hosts.</li>
+      </ol>
+    </section>
+    <section class="share">
+      <h3>Share this page</h3>
+      <button id="copyLinkBtn">Copy page link</button>
+      <span id="copyStatus"></span>
+    </section>
+  </main>
+
+  <footer>
+    <small>© <span id="year"></span> Wishes Board</small>
+  </footer>
+
+  <script src="config.js"></script>
+  <script>
+    (function() {
+      const cfg = window.WISHES_CONFIG || {};
+      const wishBtn = document.getElementById('wishButton');
+      const eventName = document.getElementById('eventName');
+      const eventDate = document.getElementById('eventDate');
+      const year = document.getElementById('year');
+      eventName.innerHTML = cfg.eventName || 'Wishes Board';
+      if (cfg.eventDate) { eventDate.textContent = cfg.eventDate; }
+      if (cfg.wishFormUrl) { wishBtn.href = cfg.wishFormUrl; }
+      year.textContent = new Date().getFullYear();
+
+      const copyBtn = document.getElementById('copyLinkBtn');
+      const copyStatus = document.getElementById('copyStatus');
+      copyBtn.addEventListener('click', async () => {
+        try {
+          await navigator.clipboard.writeText(window.location.href);
+          copyStatus.textContent = 'Link copied!';
+          setTimeout(()=>copyStatus.textContent='', 2000);
+        } catch(e) {
+          copyStatus.textContent = 'Unable to copy. Manually copy the address bar.';
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
