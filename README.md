@@ -1,11 +1,18 @@
-# Wishes Board – Static Site (Updated Names)
+# Wishes Board – With Anonymous Uploads + Emoji Reactions
 
-This folder is ready to publish.
+This package adds:
+- `upload.html`: Anonymous image upload using Uploadcare (no login for guests)
+- Emoji Reactions block on the homepage (local-only counters)
 
-## Already set for you
-- **eventName** shows two lines: `MohanBabu & Priya` and `Gangadharan & Vaishnavi`.
-- **eventDate**: With love and blessings — 2026
-- **wishFormUrl**: Replace with your live Microsoft Forms link when ready.
+## Configure
+Open `config.js` and set:
+- `eventName`, `eventDate` — already customized.
+- `wishFormUrl` — paste your Microsoft/Google Form link (text-only; no file upload needed).
+- `uploadcarePublicKey` — replace `demopublickey` with your own key from Uploadcare dashboard.
 
-## After you publish on GitHub Pages
-- Send me your live URL and I will generate a real QR code and a printable poster.
+## How anonymous uploads work
+We use the Uploadcare widget. Guests upload an image and get a shareable link. You can view/manage files in your Uploadcare dashboard.
+
+## Publish
+Upload these files to your GitHub repo root and ensure GitHub Pages is enabled (main branch, / root).
+

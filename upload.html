@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Upload a Selfie</title>
+  <link rel="stylesheet" href="style.css">
+  <meta name="description" content="Upload your selfie or group photo anonymously for the housewarming wishes board.">
+</head>
+<body>
+  <header class="hero small">
+    <div class="overlay"></div>
+    <div class="hero-content">
+      <h1>Upload a Selfie</h1>
+      <p class="sub">No login required. Images only.</p>
+      <a class="cta" href="index.html">← Back to Home</a>
+    </div>
+  </header>
+
+  <main class="content">
+    <section class="upload-section">
+      <h2>Share your photo 📸</h2>
+      <p>Tap the area below to pick an image from your phone or take a new one.</p>
+
+      <div class="uploader">
+        <!-- Uploadcare global key comes from config.js -->
+        <input type="hidden" role="uploadcare-uploader" data-images-only="true" data-multiple="false" data-clearable="true" data-tabs="file camera" id="uploader" />
+      </div>
+
+      <div id="result" class="result" style="display:none;">
+        <h3>Uploaded! ✅</h3>
+        <img id="preview" alt="preview"/>
+        <p><a id="fileLink" target="_blank" rel="noopener">Open image</a></p>
+        <button id="copyBtn" class="cta">Copy image link</button>
+        <span id="copyOk"></span>
+      </div>
+
+      <p class="note">Tip: After uploading, you can paste the link into your wishes form too.</p>
+    </section>
+  </main>
+
+  <footer>
+    <small>© <span id="year"></span> Wishes Board</small>
+  </footer>
+
+  <script src="config.js"></script>
+  <script>
+    // Set Uploadcare public key before loading the widget script
+    (function(){
+      const cfg = window.WISHES_CONFIG || {};
+      window.UPLOADCARE_PUBLIC_KEY = cfg.uploadcarePublicKey || 'demopublickey';
+    })();
+  </script>
+  <script src="https://ucarecdn.com/libs/widget/3.x/uploadcare.full.min.js"></script>
+  <script>
+    (function(){
+      const year = document.getElementById('year');
+      year.textContent = new Date().getFullYear();
+
+      const widget = uploadcare.Widget('#uploader');
+      const resultBox = document.getElementById('result');
+      const fileLink = document.getElementById('fileLink');
+      const preview = document.getElementById('preview');
+      const copyBtn = document.getElementById('copyBtn');
+      const copyOk = document.getElementById('copyOk');
+
+      widget.onUploadComplete(function(info){
+        const url = info.cdnUrl;
+        fileLink.href = url;
+        fileLink.textContent = url;
+        preview.src = url + '-/preview/300x300/';
+        resultBox.style.display = 'block';
+      });
+
+      copyBtn.addEventListener('click', async function(){
+        try {
+          await navigator.clipboard.writeText(fileLink.href);
+          copyOk.textContent = 'Copied!';
+          setTimeout(()=>copyOk.textContent='', 1500);
+        } catch(e) {
+          copyOk.textContent = 'Unable to copy';
+          setTimeout(()=>copyOk.textContent='', 1500);
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

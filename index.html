@@ -14,7 +14,10 @@
       <h1 id="eventName">Wishes Board</h1>
       <p id="eventDate" class="sub"></p>
       <p class="tag">We'd love to hear from you! Tap the button below to leave your wish ✨</p>
-      <a id="wishButton" class="cta" href="#" target="_blank" rel="noopener">Leave a Wish</a>
+      <div class="cta-row">
+        <a id="wishButton" class="cta" href="#" target="_blank" rel="noopener">Leave a Wish</a>
+        <a class="cta outline" href="upload.html">Upload a Selfie</a>
+      </div>
       <div class="qr">
         <img src="qr-placeholder.png" alt="Scan to open the wishes link"/>
         <p class="qr-caption">Scan to open the wishes link</p>
@@ -24,13 +27,20 @@
 
   <main class="content">
     <section>
+      <h2>Emoji Reactions</h2>
+      <p>Tap an emoji to send some love! (local only)</p>
+      <div class="emoji-wall" id="emojiWall"></div>
+    </section>
+
+    <section>
       <h2>How it works</h2>
       <ol>
-        <li>Scan the QR code or tap <strong>Leave a Wish</strong>.</li>
-        <li>Write your message and submit.</li>
-        <li>That's it! Your wishes will be shared with the hosts.</li>
+        <li>Tap <strong>Leave a Wish</strong> to write your message (no login).</li>
+        <li>Tap <strong>Upload a Selfie</strong> to share a photo (no login).</li>
+        <li>Spread the link or QR to friends & family.</li>
       </ol>
     </section>
+
     <section class="share">
       <h3>Share this page</h3>
       <button id="copyLinkBtn">Copy page link</button>
@@ -55,6 +65,38 @@
       if (cfg.wishFormUrl) { wishBtn.href = cfg.wishFormUrl; }
       year.textContent = new Date().getFullYear();
 
+      // Emoji wall
+      const emojis = ['😍','🙌','🏡','💐','🎉','🙏','🤩','🥳'];
+      const wall = document.getElementById('emojiWall');
+      const counts = JSON.parse(localStorage.getItem('emojiCounts')||'{}');
+      function render() {
+        wall.innerHTML = '';
+        emojis.forEach(e => {
+          const btn = document.createElement('button');
+          btn.className = 'emoji-btn';
+          const count = counts[e]||0;
+          btn.innerHTML = `<span class="emo">${e}</span><span class="cnt">${count}</span>`;
+          btn.addEventListener('click', () => {
+            counts[e] = (counts[e]||0)+1;
+            localStorage.setItem('emojiCounts', JSON.stringify(counts));
+            render();
+            // Burst animation
+            const burst = document.createElement('div');
+            burst.className = 'burst';
+            burst.textContent = e;
+            document.body.appendChild(burst);
+            const rX = Math.random()*window.innerWidth;
+            const rY = Math.random()*window.innerHeight;
+            burst.style.left = rX+'px';
+            burst.style.top = rY+'px';
+            setTimeout(()=>burst.remove(), 800);
+          });
+          wall.appendChild(btn);
+        });
+      }
+      render();
+
+      // Copy link button
       const copyBtn = document.getElementById('copyLinkBtn');
       const copyStatus = document.getElementById('copyStatus');
       copyBtn.addEventListener('click', async () => {
