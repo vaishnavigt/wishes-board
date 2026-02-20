@@ -30,6 +30,28 @@
         <input type="hidden"
                role="uploadcare-uploader"
                data-images-only="true"
+               data-multiple="false"
+               data-clearable="true"
+               data-tabs="file camera"
+               id="uploader" />
+      </div>
+
+      <div id="result" class="result" style="display:none;">
+        <h3>Uploaded! ✅</h3>
+        <img id="preview" alt="preview"/>
+        <p><a id="fileLink" target="_blank" rel="noopener">Open image</a></p>
+        <button id="copyBtn" class="cta">Copy image link</button>
+        <span id="copyOk"></span>
+      </div>
+
+      <p class="note">💡 Your photo is safely stored in the cloud for our future memories!</p>
+    </section>
+  </main>
+
+  <footer>
+    <small>© <span id="year"></span> Wishes Board</small>
+  </footer>
+
   <!-- 1) Load the latest config (cache-busted) -->
   <script src="config.js?v=4"></script>
   <!-- 2) Expose Uploadcare public key from config -->
@@ -37,7 +59,6 @@
     (function () {
       const cfg = window.WISHES_CONFIG || {};
       window.UPLOADCARE_PUBLIC_KEY = cfg.uploadcarePublicKey || 'demopublickey';
-      // Update wish button with form URL from config
       const wishBtn = document.getElementById('wishButton');
       if (cfg.wishFormUrl && wishBtn) {
         wishBtn.href = cfg.wishFormUrl;
@@ -78,28 +99,6 @@
           setTimeout(()=>copyOk.textContent='', 1500);
         }
       });
-    })();
-  </script>ass="note">💡 Your photo is safely stored in the cloud for our future memories!</p>
-    </section>
-  </main>
-
-  <footer>
-    <small>© <span id="year"></span> Wishes Board</small>
-  </footer>
-
-  <!-- 1) Load the latest config (cache-busted) -->
-  <script src="config.js?v=4"></script>
-  <!-- 2) Update wish button with form URL from config -->
-  <script>
-    (function () {
-      const cfg = window.WISHES_CONFIG || {};
-      // Update wish button with form URL from config
-      const wishBtn = document.getElementById('wishButton');
-      if (cfg.wishFormUrl && wishBtn) {
-        wishBtn.href = cfg.wishFormUrl;
-      }
-      const year = document.getElementById('year');
-      year.textContent = new Date().getFullYear();
     })();
   </script>
 </body>
