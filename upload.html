@@ -4,8 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Upload a Selfie</title>
-  <link rel="stylesheet" href="style.css">
-  <meta name="description" content="Upload your selfie or group photo anonymously for the housewarming wishes board.">
+  <link rel="stylesheet" href="style.cssontent="Upload your selfie or group photo anonymously for the housewarming wishes board.">
 </head>
 <body>
   <header class="hero small">
@@ -13,7 +12,7 @@
     <div class="hero-content">
       <h1>Upload a Selfie</h1>
       <p class="sub">No login required. Images only.</p>
-      <a class="cta" href="index.html">← Back to Home</a>
+      index.html← Back to Home</a>
     </div>
   </header>
 
@@ -24,7 +23,13 @@
 
       <div class="uploader">
         <!-- Uploadcare global key comes from config.js -->
-        <input type="hidden" role="uploadcare-uploader" data-images-only="true" data-multiple="false" data-clearable="true" data-tabs="file camera" id="uploader" />
+        <input type="hidden"
+               role="uploadcare-uploader"
+               data-images-only="true"
+               data-multiple="false"
+               data-clearable="true"
+               data-tabs="file camera"
+               id="uploader" />
       </div>
 
       <div id="result" class="result" style="display:none;">
@@ -43,15 +48,18 @@
     <small>© <span id="year"></span> Wishes Board</small>
   </footer>
 
-  <script src="config.js"></script>
+  <!-- 1) Load the latest config (cache-busted) -->
+  <script src="config.js?v=4<!-- 2) Expose Uploadcare public key from config -->
   <script>
-    // Set Uploadcare public key before loading the widget script
-    (function(){
+    (function () {
       const cfg = window.WISHES_CONFIG || {};
       window.UPLOADCARE_PUBLIC_KEY = cfg.uploadcarePublicKey || 'demopublickey';
     })();
   </script>
-  <script src="https://ucarecdn.com/libs/widget/3.x/uploadcare.full.min.js"></script>
+
+  <!-- 3) Load Uploadcare widget script -->
+  <script src="https://ucarecdn.com/libs/widget/3.x/uploadcare.full.min
+  <!-- 4) Initialize widget & UI -->
   <script>
     (function(){
       const year = document.getElementById('year');
