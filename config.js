@@ -1,3 +1,4 @@
+// config.js  (root of your repo)
 window.WISHES_CONFIG = {
   eventName: "MohanBabu & Priya <br> Gangadharan & Vaishnavi",
   eventDate: "With love and blessings — 2026",
