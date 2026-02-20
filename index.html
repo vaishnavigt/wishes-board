@@ -59,14 +59,12 @@
   <script>
     (function() {
       const cfg = window.WISHES_CONFIG || {};
-      const wishBtn = document.getElementById('wishButton');
       const eventName = document.getElementById('eventName');
       const eventDate = document.getElementById('eventDate');
       const year = document.getElementById('year');
       // Use innerHTML so <br> in eventName renders as a line break
       eventName.innerHTML = cfg.eventName || 'Wishes Board';
       if (cfg.eventDate) { eventDate.textContent = cfg.eventDate; }
-      if (cfg.wishFormUrl) { wishBtn.href = cfg.wishFormUrl; }
       year.textContent = new Date().getFullYear();
 
       // Emoji wall
