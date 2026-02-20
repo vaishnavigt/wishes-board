@@ -13,9 +13,9 @@ a { color: inherit; }
 .hero .tag { font-size: clamp(1rem, 1.5vw, 1.125rem); margin-bottom: 24px; }
 
 .cta-row { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
-.cta { display: inline-block; background: #fff; color: #7c4dff; padding: 14px 22px; border-radius: 10px; text-decoration: none; font-weight: 700; box-shadow: 0 8px 24px rgba(0,0,0,.2); transition: transform .15s ease, box-shadow .15s ease; }
-.cta:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(0,0,0,.25); }
-.cta.outline { background: transparent; color:#fff; border:2px solid #fff; }
+.cta { display: inline-block; background: #fff; color: #7c4dff; padding: 16px 28px; border-radius: 10px; text-decoration: none; font-weight: 700; font-size: 1.1rem; box-shadow: 0 10px 30px rgba(0,0,0,.3); transition: transform .15s ease, box-shadow .15s ease; }
+.cta:hover { transform: translateY(-2px); box-shadow: 0 14px 40px rgba(0,0,0,.4); }
+.cta.outline { background: rgba(255,255,255,0.2); color:#fff; border:3px solid #fff; backdrop-filter: blur(10px); }
 
 .qr { margin-top: 28px; }
 .qr img { width: 180px; height: 180px; border-radius: 12px; background: #fff; padding: 10px; box-shadow: 0 8px 24px rgba(0,0,0,.25); }
