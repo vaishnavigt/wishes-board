@@ -4,7 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Upload a Selfie</title>
-  <link rel="stylesheet" href="style.cssontent="Upload your selfie or group photo anonymously for the housewarming wishes board.">
+  <link rel="stylesheet" href="style.css">
+  <meta name="description" content="Upload your selfie or group photo anonymously for the housewarming wishes board.">
 </head>
 <body>
   <header class="hero small">
@@ -12,7 +13,7 @@
     <div class="hero-content">
       <h1>Upload a Selfie</h1>
       <p class="sub">No login required. Images only.</p>
-      index.html← Back to Home</a>
+      <a href="index.html">← Back to Home</a>
     </div>
   </header>
 
@@ -49,7 +50,8 @@
   </footer>
 
   <!-- 1) Load the latest config (cache-busted) -->
-  <script src="config.js?v=4<!-- 2) Expose Uploadcare public key from config -->
+  <script src="config.js?v=4"></script>
+  <!-- 2) Expose Uploadcare public key from config -->
   <script>
     (function () {
       const cfg = window.WISHES_CONFIG || {};
@@ -58,7 +60,7 @@
   </script>
 
   <!-- 3) Load Uploadcare widget script -->
-  <script src="https://ucarecdn.com/libs/widget/3.x/uploadcare.full.min
+  <script src="https://ucarecdn.com/libs/widget/3.x/uploadcare.full.min.js"></script>
   <!-- 4) Initialize widget & UI -->
   <script>
     (function(){
